@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout.html :: dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<h1 th:text="#{home.title}">Trang chủ</h1>
+	<h4 th:text="#{home.content}"></h4>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<body>
+	<nav th:fragment="navbar">
+		<a th:href="@{/home/index}" th:text="#{nav.home}">Home</a>
+		<a th:href="@{/home/about}"  th:text="#{nav.about}">About</a>
+		<a th:href="@{/student/form}"  th:text="#{nav.student}">Student</a> 
+		[<a href="?lang=vi">Tiếng Việt</a>]
+		[<a href="?lang=en">English</a>]
+	</nav>
+</body>
+</html>
