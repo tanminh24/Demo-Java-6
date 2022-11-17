@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+	<input type="file" onchange="angular.element(this).scope().import(this.file)">
+	<script type="text/javascript">
+		const app = angular.module("app", []);
+		app.controller("ctrl", ($scope, $http) => {
+			$scope.import = (files) => {
+				var reader = new FileReader();
+				reader.onloadend = async () => {
+					var workbook = new ExcelJS.Workbook();
+					await workbook.xlsx.load(reader.result);
+					const worksheet = workbook.getWorksheet("Sheet1");
+					worksheet.eachRow((row, index) => {
+						if (index > 1) {
+							let student = {
+								email: row.getCell(1).value,
+								fullname: row.getCell(2).value,
+								marks: row.getCell(3).value,
+								gender: true && row.getCell(4).value,
+								country: row.getCell(5).value
+							}
+							let url = "http://localhost:8080/demo-java6-b5/api/students";
+							$http.post(url, student).then(resp => {
+								console.log("Succes", resp.data);
+							}).catch(resp => {
+								console.log("Error", resp);
+							});
+						}
+					});
+				}
+			}
+		});
+	</script>
+</body>
+</html>

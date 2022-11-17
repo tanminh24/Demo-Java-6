@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="app" ng-controller="ctrl">
+		<label> Upload Files: <input type="file" accept="image/*"
+			multiple onchange="angular.element(this).scope().upload(this.files)">
+		</label>
+		<hr>
+		<label ng-repeat="filename in filenames">
+			<img ng-src="{{url(filename)}}" ng-dblclick="delete(filename)">
+		</label>
+	</div>
+	<script type="text/javascript">
+		const app = angular.module("app", []);
+		app.controller("ctrl", ($scope, $http) => {
+			var url = "http://localhost:8080/demo-java6-b5/api/files/images";
+			$scope.url = (filename) => {
+				return `${url}/${filename}`;
+			}
+			
+			$scope.list = () => {
+				$http.get(url).then(resp => {
+					$scope.filenames = resp.data;
+				}).catch(resp => {
+					console.log("Error", resp);
+				});
+			}
+			
+			$scope.upload = (files) => {
+				var form = new FormData();
+				for (var i = 0; i < files.length; i++) {
+					form.append("files", files[i]);
+				}
+				
+				$http.post(url, form, {
+					transformRequest: angular.identity,
+					headers: {'Content-Type' : undefined}
+				}).then(resp => {
+					$scope.filenames.push(...resp.data)
+				}).catch(resp => {
+					console.log("Error", resp);
+				});
+			}
+			
+			$scope.delete = (filename) => {
+				$http.delete(`${url}/${filename}`).then(resp => {
+					let i = $scope.filenames.findIndex(name => name = filename);
+					$scope.filenames.splice(i, 1);
+				}).catch(resp => {
+					console.log("Error", resp);
+				});
+			}
+			$scope.list();
+		});
+	</script>
+</body>
+</html>
