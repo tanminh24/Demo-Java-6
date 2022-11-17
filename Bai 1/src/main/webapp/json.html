@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test JSON</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var sv = {
+			"name" : "Nguyễn Văn A",
+			"gender" : true,
+			"marks" : 8.5,
+			"contact" : {
+				"email" : "anv@gmail.com",
+				"phone" : "0912345678"
+			},
+			"subjects" : [ "WEB123", "SOF306" ]
+		}
+
+		//Xuất đối tượng
+		console.log(sv);
+		//Truy xuất thuộc tính
+		sv.name = sv['name'].toUpperCase();
+		console.log(sv.name, sv.contact.email, sv.subjects[0])
+		//duyệt đối tượng theo key
+		for(var key in sv){
+			console.log(key,sv[key])
+		}
+		//chuyển đổi Json sang chuỗi
+		var text = JSON.stringify(sv);
+		console.log(text)
+		//chuyển đổi chuỗi sang json
+		var obj = JSON.parse(text);
+		console.log(obj, obj.name)
+	</script>
+</body>
+</html>
