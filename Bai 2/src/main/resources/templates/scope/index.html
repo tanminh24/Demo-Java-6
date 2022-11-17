@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+</head>
+<body>
+	<h3>Scope &amp; Parameters</h3>
+	<ul>
+		<li>A - Model: [[${a}]]</li>
+		<li>B - Request: [[${b}]]</li>
+		<li>C - Session: [[${session.c}]]</li>
+		<li>D - Application: [[${application.d}]]</li>
+		<li>X - Parameter: [[${param.x}]]</li>
+	</ul>
+	<a href="scope?x=Hi Tan Minh">HI</a>
+</body>
+</html>

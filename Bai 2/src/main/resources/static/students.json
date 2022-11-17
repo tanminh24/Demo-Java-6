@@ -1,0 +1,41 @@
+[
+	{
+		"name": "Nguyễn Văn A",
+		"gender": true,
+		"marks": 8.5,
+		"contact": {
+			"email": "anv@gmail.com",
+			"phone": "0912345678"
+		},
+		"subjects": [
+			"WEB123",
+			"SOF306",
+			"SOF3021"
+		]
+	},
+	{
+		"name": "Nguyễn Văn B",
+		"gender": true,
+		"marks": 3.5,
+		"contact": {
+			"email": "anv@gmail.com",
+			"phone": "0912345678"
+		},
+		"subjects": [
+			"WEB123"
+		]
+	},
+	{
+		"name": "Nguyễn Văn C",
+		"gender": true,
+		"marks": 9.5,
+		"contact": {
+			"email": "anv@gmail.com",
+			"phone": "0912345678"
+		},
+		"subjects": [
+			"WEB123",
+			"SOF306"
+		]
+	}
+]
