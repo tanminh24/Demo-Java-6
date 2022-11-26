@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring Security</title>
+</head>
+<body>
+	<nav>
+		<a th:href="@{/home/index}">Home</a> :: 
+		<a th:href="@{/home/about}">About</a> 
+		||| 
+		<a th:href="@{/home/admins}">Admins</a> :: 
+		<a th:href="@{/home/users}">Users</a> :: 
+		<a th:href="@{/home/authenticated}">Authenticated</a>
+		|||
+		<a th:href="@{/home/thymeleaf1}">Thymeleaf1</a> :: 
+		<a th:href="@{/home/thymeleaf2}">Thymeleaf2</a> 
+		|||
+		<a th:href="@{/auth/login/form}">Login</a> :: 
+		<a th:href="@{/auth/logout}">Logout</a>
+		
+	</nav>
+</body>
+</html>
