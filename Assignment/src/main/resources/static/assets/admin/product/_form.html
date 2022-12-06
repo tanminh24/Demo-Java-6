@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6 form-group" style="text-align: center;">
+                <label for=" image" style="margin-top: 20px"> <img ng-src="{{'/assets/images/' + form.image}}"
+                        style="height: 220px;">
+                </label> <input type="file" class="form-control" id="image"
+                    onchange="angular.element(this).scope().imageChanged(this.files)" hidden />
+                <button type="button" class="btn btn-outline-secondary" id="btn-upload" ng-click="btnUploadFile()">Chọn
+                    ảnh</button>
+            </div>
+            <div class="col-md-6 form-group">
+                <div class="form-group">
+                    <label for="name">Tên sản phẩm</label> <input type="text" class="form-control" id="name"
+                        placeholder="Tên sản phẩm" ng-model="form.name">
+                </div>
+                <div class="form-group">
+                    <label for="price">Đơn giá</label> <input type="number" class="form-control" id="price"
+                        placeholder="Đơn giá" ng-model="form.price">
+                </div>
+                <div class="form-group">
+                    <label for="description">Số lượng</label> <input type="number" class="form-control" id="description"
+                        placeholder="Số lượng" ng-model="form.quantity">
+                </div>
+                <div class="form-group">
+                    <label for="category">Danh mục</label>
+                    <select class="form-select" ng-model="form.category.id">
+                        <option value="" selected>Danh mục</option>
+                        <option ng-repeat="c in categories" ng-value="{{c.id}}">{{c.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-md-3">
+                <button ng-click="create()" type="button" class="btn btn-primary" style="width: 100%;">Create</button>
+            </div>
+            <div class="col-md-3">
+                <button ng-click="update()" type="button" class="btn btn-success" style="width: 100%;">Update</button>
+            </div>
+            <div class="col-md-3" ng-if="form.available == 1">
+                <button ng-click="unavailable()" type="button" class="btn btn-danger"
+                    style="width: 100%;">Unavailable</button>
+            </div>
+            <div class="col-md-3" ng-if="form.available != 1">
+                <button ng-click="available()" type="button" class="btn btn-danger"
+                    style="width: 100%;">Available</button>
+                <!-- <button ng-click="delete(form)" type="button" class="btn btn-danger" style="width: 100%;">Delete</button> -->
+            </div>
+            <div class="col-md-3">
+                <button ng-click="reset()" type="button" class="btn btn-secondary" style="width: 100%;">Reset</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div style="margin-top: 0px">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Mã sản phẩm</td>
+                        <th colspan="2">
+                            <input style="border: none" readonly ng-model="form.id">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái</td>
+                        <th colspan="2">
+                            <input style="border: none" readonly ng-model="form.available?'Đang bán':'Ngưng bán'">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Ngày khởi tạo</td>
+                        <th colspan="2">
+                            <input type="text" style="border: none"
+                                ng-model="form.createdDate|date:'dd-MM-yyyy HH:mm:ss a'" readonly>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Người tạo</td>
+                        <th colspan="2">
+                            <input style="border: none" readonly ng-model="form.createdUser.username">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Ngày cập nhật cuối</td>
+                        <th colspan="2">
+                            <input style="border: none" readonly
+                                ng-model="form.lastModifiedDate|date:'dd-MM-yyyy HH:mm:ss a'">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Người cập nhật cuối</td>
+                        <th colspan="2">
+                            <input style="border: none" readonly ng-model="form.lastModifiedUser.username">
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <button ng-click="exportExcel()" type="button" class="btn btn-primary" style="width: 100%;">Xuất
+                    excel</button>
+            </div>
+        </div>
+    </div>
+</div>

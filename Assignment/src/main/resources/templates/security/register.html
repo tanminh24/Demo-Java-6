@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" th:replace="~{/security/index :: dynamicS(~{::main})}">
+
+<main>
+    <div>
+        <div class="text-center">
+            <h4 class="text-secondary" id="module">Đăng ký</h4>
+        </div>
+        <div class="p-4" style="margin-bottom: -60px;">
+            <form method="POST" action=""
+                enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="username" path="username"
+                        placeholder="Tên đăng nhập" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" name="password" path="password"
+                        placeholder="Mật khẩu" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" name="rePassword" placeholder="Nhập lại mật khẩu" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="fullname" path="fullname" placeholder="Họ tên" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="email" path="email" placeholder="Email" />
+                </div>
+                <div class="d-grid col-12 mx-auto">
+                    <button class="btn btn-secondary">Đăng ký</button>
+                </div>
+                <p></p>
+                <div class="row">
+                    <div class="col-md-5"><hr></div>
+                    <div class="col-md-2"><span class="text-secondary">HOẶC</span></div>
+                    <div class="col-md-5"><hr></div>
+                </div>
+                <p class="text-center mt-3">Đã có tài khoản?
+                    <a class="text-secondary" style="text-decoration: none;"
+                    th:href="@{/security/login/form}">
+                        Đăng nhập</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</main>
+
+</html>

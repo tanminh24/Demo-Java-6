@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main>
+        <div class="row" th:fragment="shopping-cart">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Giỏ hàng</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-outline-danger float-end" ng-click="cart.clear()">Xóa giỏ hàng</button>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Thành tiền</th>
+                                    <th scope="col">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in cart.items">
+                                    <th ng-init="incrementIndex($index)">{{$index + 1}}</th>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.price | number:0}}₫</td>
+                                    <td>
+                                        <div class="input-group mb-3">
+                                            <button class="btn btn-outline-secondary"
+                                                ng-click="cart.decrease(item.id)">-</button>
+                                            <input class="form-control" type="text" min="1" ng-model="item.qty"
+                                                style="width: 5px; text-align: center">
+                                            <button class="btn btn-outline-secondary"
+                                                ng-click="cart.increase(item.id)">+</button>
+                                        </div>
+                                    </td>
+                                    <td>{{item.qty * item.price | number:0}}₫</td>
+                                    <td>
+                                        <button class="btn btn-outline-danger"
+                                            ng-click="cart.remove(item.id)">Xóa</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8" style="text-align: left">
+                        <h3>Tổng tiền: {{cart.amount | number:0}}₫</h3>
+                    </div>
+                    <div class="col-sm-4" style="text-align: right">
+                        <a th:href="@{|/order/checkout|}" class="btn btn-success">Thanh toán</a>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+    </main>
+</body>
+
+</html>

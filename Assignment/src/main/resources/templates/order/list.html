@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main>
+        <!-- Order list -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Đơn hàng của tôi</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Thời gian đặt</th>
+                                <th>Địa chỉ</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${orders}">
+                                <td th:text="*{order.id}"></td>
+                                <td th:text="*{#dates.format(order.createdDate, 'HH:mm:ss dd-MM-yyyy')}"></td>
+                                <td th:text="*{order.address}"></td>
+                                <td>
+                                    [[${#numbers.formatDecimal(order.amount, 0, 'COMMA', 0, 'POINT')}]]₫
+                                </td>
+                                <td>
+                                    <a th:href="@{/order/detail/{id}(id=${order.id})}" class="btn btn-secondary">Chi
+                                        tiết</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </main>
+</body>
+
+</html>

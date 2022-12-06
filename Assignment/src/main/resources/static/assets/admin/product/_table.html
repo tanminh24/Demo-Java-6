@@ -1,0 +1,62 @@
+<form class="d-flex" role="search">
+  <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Mã</th>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col"><span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Đơn giá
+          (vnđ)</span>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Tăng dần</a></li>
+          <li><a class="dropdown-item" href="#">Giảm dần</a></li>
+        </ul>
+      </th>
+      <th scope="col"><span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Số lượng </span>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Tăng dần</a></li>
+          <li><a class="dropdown-item" href="#">Giảm dần</a></li>
+        </ul>
+      </th>
+      <th><span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> Danh mục </span>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Action two</a></li>
+          <li><a class="dropdown-item" href="#">Action three</a></li>
+        </ul>
+      </th>
+      <th>Trạng thái</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in pager.items">
+      <th>{{item.id}}</th>
+      <td>{{item.name}}</td>
+      <td>{{item.price | currency: "" : 0}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.category.name}}</td>
+      <td>{{item.available?'Đang bán':'Ngưng bán'}}</td>
+      <td><button ng-click="edit(item)" class="btn btn-outline-secondary" type="submit">Chi tiết</button></td>
+    </tr>
+  </tbody>
+</table>
+<div class="row text-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item"><button ng-click="pager.first()" class="btn btn-outline-secondary bi bi-chevron-double-left"
+          style="margin: 0px 3px 0px;"></button></li>
+      <li class="page-item"><button ng-click="pager.prev()" class="btn btn-outline-secondary bi bi-chevron-left"
+          style="margin: 0px 3px 0px;"></button></li>
+      <li class="page-item">
+        <p style="margin: 5px 3px 0px;">{{pager.page+1}}/{{pager.count}}</p>
+      </li>
+      <li class="page-item"><button ng-click="pager.next()" class="btn btn-outline-secondary bi bi-chevron-right"
+          style="margin: 0px 3px 0px;"></button></li>
+      <li class="page-item"><button ng-click="pager.last()" class="btn btn-outline-secondary bi bi-chevron-double-right"
+          style="margin: 0px 3px 0px;"></button></li>
+    </ul>
+  </nav>
+</div>
